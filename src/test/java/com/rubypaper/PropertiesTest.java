@@ -9,11 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class Chapter03ApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
+class PropertiesTest {
 	
 	@Autowired
 	Environment environment;
@@ -23,5 +19,4 @@ class Chapter03ApplicationTests {
 		System.out.println("name : "+environment.getProperty("author.name"));
 		System.out.println("age : "+environment.getProperty("author.age"));
 	}
-
 }
