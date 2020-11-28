@@ -7,8 +7,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.rubypaper.controller.BoardController;
+
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(
+		classes=BoardController.class,properties= {"author.name=LOCALAUTH","author.age=45"})
 class PropertiesTest {
 	
 	@Autowired
