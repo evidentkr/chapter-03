@@ -6,9 +6,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-//import org.junit.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,7 +22,7 @@ import com.rubypaper.service.BoardService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc  //@Service @Repository 객체를 모두 참조(메모리로딩)
 public class BoardControllerTest {
 
 	@Autowired
@@ -31,24 +31,14 @@ public class BoardControllerTest {
 	@MockBean
 	private BoardService boardService;
 	
-	@Autowired
-	Environment environment;
-	
 	@Test
 	public void testHello() throws Exception {
 		when(boardService.hello("둘리")).thenReturn("Hello : 둘리");
 		
-		mockMvc.perform(get("/hello").param("name","둘리"))
+		mockMvc.perform(get("/hello").param("name","둘리"))  //get,post,put,delete
 		.andExpect(status().isOk())
 		.andExpect(content().string("Hello : 둘리"))
 		.andDo(print());
 		
-	}
-
-	
-	@Test
-	public void testMethod() {
-		System.out.println("name : "+environment.getProperty("your.name"));
-		System.out.println("age : "+environment.getProperty("your.age"));
 	}
 }
